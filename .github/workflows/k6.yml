@@ -1,0 +1,27 @@
+name: k6 Load Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  k6-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run local smoke test
+        run: k6 run samples/http-load-test.js
+
+      - name: Run test with Grafana Cloud output
+        if: env.K6_CLOUD_TOKEN != ''
+        env:
+          K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
+        run: k6 cloud samples/http-load-test.js

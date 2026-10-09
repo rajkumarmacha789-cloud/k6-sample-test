@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# k6 output artifacts
+*.json
+!configs/*.json
+!grafana/dashboards/*.json
+results/
+reports/
+summary.json
+results.json
+
+# Environment / secrets
+.env
+.env.local
+*.token
+
+# Logs
+*.log
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
