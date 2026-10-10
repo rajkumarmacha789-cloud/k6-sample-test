@@ -100,4 +100,12 @@ k6 (load generator)
 
 Read `Mastery.md` for engineering standards and the lab mastery checklist.
 
+---
+
+## Contributing
+
+1. Create a branch for your changes.
+2. Run `k6 inspect` to validate any script you edit.
+3. Commit and push your changes for review.
+
 *Happy Testing, Future Performance Engineer!*
