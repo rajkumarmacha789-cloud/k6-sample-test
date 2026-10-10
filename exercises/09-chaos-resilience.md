@@ -1,4 +1,4 @@
-# Exercise 09: Resilience & Chaos Load Testing
+# Exercise : Resilience & Chaos Load Testing
 
 - Understand how system performance degrades under failure conditions
 - Compare normal vs degraded response times in real-time
@@ -16,6 +16,7 @@ k6-grafana-run samples/chaos-resilience-test.js
 ```
 
 Open the Grafana URL shown in the terminal. You will see:
+
 - **Phase 1 (0-30s):** Normal traffic — response times ~200ms, 0% errors
 - **Phase 2 (30-60s):** Degraded service — response times spike to 2-3s
 - **Phase 3 (60-90s):** Service errors — 50% of requests fail with 500s
@@ -24,12 +25,15 @@ Open the Grafana URL shown in the terminal. You will see:
 ```bash
 k6-html-report samples/chaos-resilience-test.js
 ```
+
 Compare metrics across scenarios:
+
 - What was the p95 response time during normal vs degraded?
 - What was the error rate during the error injection phase?
 - How quickly did the system recover?
 
 Modify the test to add:
+
 - **Timeout:** Abort requests that take > 3s
 - **Circuit breaker:** Stop sending requests if error rate > 50%
 - **Retry logic:** Retry failed requests once
@@ -55,4 +59,3 @@ if (errorRate > 0.5) {
 - Network latency spikes between microservices
 - DNS resolution becomes slow
 - Connection pool exhaustion under load
-

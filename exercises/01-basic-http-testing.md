@@ -7,8 +7,8 @@
 
 - k6 installed (verify with `k6 version`)
 
+Create file called `basic-test.js`:
 
-Create a file called `basic-test.js`:
 ```javascript
 import http from "k6/http";
 import { check, sleep } from "k6";
@@ -31,6 +31,7 @@ k6 run --vus 5 --duration 10s basic-test.js
 ```
 
 Modify your script to add checks for response body and timing:
+
 ```javascript
 check(res, {
   "status is 200": (r) => r.status === 200,
@@ -40,6 +41,7 @@ check(res, {
 ```
 
 You should see k6 summary output showing:
+
 - Number of VUs and iterations completed
 - HTTP request metrics (duration, waiting, sending, receiving)
 - Check pass/fail counts
@@ -48,4 +50,3 @@ You should see k6 summary output showing:
 - You understand how VUs simulate concurrent users
 - You can validate responses with `check()`
 - You understand `sleep()` controls pacing between iterations
-

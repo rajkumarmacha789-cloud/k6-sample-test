@@ -52,7 +52,7 @@ export default function () {
   const toolsRes = http.get(`${BASE_URL}/api/tools`, authHeaders);
   const toolsPass = check(toolsRes, {
     "tools: status is 200": (r) => r.status === 200,
-    "tools: returns tools list": (r) => Array.isArray(r.json("tools")) && r.json("tools").length > 0,
+    "tools: returns tools lists": (r) => Array.isArray(r.json("tools")) && r.json("tools").length > 0,
   });
   syntheticSlaPass.add(toolsPass);
 
